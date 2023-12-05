@@ -1,0 +1,7 @@
+Title: OCI Vault Secret Resource
+schemaVersion: 1.1.0
+locale: "en"
+variables:
+  secret:
+    description: "Secret input object"
+    type: object
