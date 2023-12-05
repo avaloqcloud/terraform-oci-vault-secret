@@ -17,7 +17,7 @@ The code provides a reusable and standalone Terraform module that provisions a V
         },
         "vault_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
         "key_id": "ocid1.key.oc1.eu-frankfurt-1.x",
-       "description": "My Secret"
+        "description": "My Secret"
     }
 }
 ```
