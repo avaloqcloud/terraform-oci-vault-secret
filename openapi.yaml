@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: OCI Vault Secret
+  description: Represents end-user input based on terraform module 'terraform-oci-vault-secret'
+  version: 0.0.1
+components:
+  schemas:
+    secret:
+      type: object
+      description: "Secret input object"
+      required: 
+        - secret_name
+        - compartment_id
+        - secret_content
+      properties:
+        secret_name:
+          $ref: "#/components/schemas/secret_name"
+        compartment_id:
+          $ref: "#/components/schemas/compartment_id"
+        secret_content:
+          $ref: "#/components/schemas/secret_content"
+        description:
+          $ref: "#/components/schemas/description"
+        defined_tags:
+          $ref: "#/components/schemas/defined_tags"
+        freeform_tags:
+          $ref: "#/components/schemas/freeform_tags"
+    secret_name:
+      type: string
+      description: "A user-friendly name for the secret. Secret names should be unique within a vault. Avoid entering confidential information. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods."
+      pattern: '[0-9a-zA-Z,.-_]'
+      example: "my-secret"
+    compartment_id:
+      type: string
+      description: "The OCID of the compartment."
+    secret_content:
+      type: object
+      description: "The content of the secret and metadata to help identify it."
+      required: 
+        - content_type
+        - content
+      properties:
+        content_type:
+          type: string
+          description: "Content type"
+          pattern: '^BASE64$'
+          default: "BASE64"
+        content:
+          type: string
+          description: "The base64-encoded content of the secret."       
+        name:
+          type: string
+          description: "Names should be unique within a secret. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods." 
+          pattern: '[0-9a-zA-Z,.-_]'
+        stage:
+          type: string
+          description: "The rotation state of the secret content. The default is CURRENT, meaning that the secret is currently in use. A secret version that you mark as PENDING is staged and available for use, but you don't yet want to rotate it into current, active use. For example, you might create or update a secret and mark its rotation state as PENDING if you haven't yet updated the secret on the target system. When creating a secret, only the value CURRENT is applicable, although the value LATEST is also automatically applied. When updating a secret, you can specify a version's rotation state as either CURRENT or PENDING."
+    description:
+      type: string
+      description: "A brief description of the secret. Avoid entering confidential information."
+    defined_tags:
+      type: string
+      description: "Defined tags for this resource. Each key is predefined and scoped to a namespace"
+      example: "{\"Operations.CostCenter\": \"42\"}"
+    freeform_tags:
+      type: string
+      description: "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."
+      example: "{\"Department\": \"Finance\"}"
