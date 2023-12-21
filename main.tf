@@ -1,23 +1,22 @@
 resource "oci_vault_secret" "this" {
-  for_each = local.potential_secret
   #Required
-  compartment_id = each.value.compartment_id
+  compartment_id = var.secret.compartment_id
   secret_content {
     #Required
-    content_type = each.value.secret_content.content_type
-    content      = each.value.secret_content.content
+    content_type = var.secret.secret_content.content_type
+    content      = var.secret.secret_content.content
     #Optional
-    name  = each.value.secret_content.name
-    stage = each.value.secret_content.stage
+    name  = var.secret.secret_content.name
+    stage = var.secret.secret_content.stage
   }
-  secret_name = each.value.secret_name
-  vault_id    = each.value.vault_id
+  secret_name = var.secret.secret_name
+  vault_id    = var.secret.vault_id
   #Optional
-  defined_tags  = each.value.defined_tags
-  description   = each.value.description
-  freeform_tags = each.value.freeform_tags
-  key_id        = each.value.key_id
-  metadata      = each.value.metadata
+  defined_tags  = var.secret.defined_tags
+  description   = var.secret.description
+  freeform_tags = var.secret.freeform_tags
+  key_id        = var.secret.key_id
+  metadata      = var.secret.metadata
   /*
   Unhandled Parameters:
     secret_rules {

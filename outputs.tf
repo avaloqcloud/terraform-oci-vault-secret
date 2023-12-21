@@ -1,4 +1,4 @@
 output "secret" {
-  value       = local.output_secret["resource"]
+  value       = oci_vault_secret.this
   description = "Secret output object"
 }

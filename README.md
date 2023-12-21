@@ -2,8 +2,6 @@
 # Terraform OCI Vault Secret
 The code provides a reusable and standalone Terraform module that provisions a Vault Secret on Oracle Cloud Infrastructure.
 
->⚠️**CAUTION:** Usage of this module assumes no reliance on existing Terraform/ORM state, apply on existing terraform state will remove existng `secret` resource if managed in state. ⚠️
-
 ## Example Input
 `secret.auto.tfvars.json`:
 ```json
